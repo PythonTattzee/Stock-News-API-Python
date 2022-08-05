@@ -2,7 +2,14 @@ import os
 import requests
 from twilio.rest import Client
 from datetime import datetime
+from datetime import timedelta
 
+#here I use the datetime module to define the yesterday day and the day before and I save them into variables
+today = datetime.today()
+yesterday = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+before_yesterday = (today - timedelta(days=2)).strftime("%Y-%m-%d")
+print(yesterday)
+print(before_yesterday)
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -38,8 +45,8 @@ description = news_data["articles"][0]["description"]
 
 # price_is_bigger = False
 # here I get the stock prices for yesterday and the day before yestreday and save them into variables
-yesterday_price = float(av_data["Time Series (Daily)"]["2022-07-22"]["4. close"])
-before_yesterday_price = float(av_data["Time Series (Daily)"]["2022-07-21"]["4. close"])
+yesterday_price = float(av_data["Time Series (Daily)"][yesterday]["4. close"])
+before_yesterday_price = float(av_data["Time Series (Daily)"][before_yesterday]["4. close"])
 
 # print(yesterday_price)
 # print(before_yesterday_price)
