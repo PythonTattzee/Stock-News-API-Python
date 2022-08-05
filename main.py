@@ -5,11 +5,13 @@ from datetime import datetime
 from datetime import timedelta
 
 #here I use the datetime module to define the yesterday day and the day before and I save them into variables
-today = datetime.today()
-yesterday = (today - timedelta(days=1)).strftime("%Y-%m-%d")
-before_yesterday = (today - timedelta(days=2)).strftime("%Y-%m-%d")
-print(yesterday)
-print(before_yesterday)
+now = datetime.today()
+today_date = now.strftime("%Y-%m-%d")
+yesterday = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+before_yesterday = (now - timedelta(days=2)).strftime("%Y-%m-%d")
+# print(today_date)#sorry my debugging trace
+# print(yesterday)
+# print(before_yesterday)
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -19,7 +21,7 @@ auth_token = os.environ['TWILIO_AUTH_TOKEN']
 #here I define the parameters for the connection to news server
 news_parameters = {
     "q": COMPANY_NAME,
-    "from":"2022-07-23&",
+    "from":f"{today_date}&",
     "apiKey": "dab3b5ed98004493b0a62dc821388ff9"
 
 }
